@@ -1,0 +1,19 @@
+# MariaDB
+MARIADB_DATABASE=ai-grow
+MARIADB_ROOT_PASSWORD=root
+MARIADB_USER=app
+MARIADB_PASSWORD=app
+
+# DB host/port dùng trong JDBC URL (compose đã có default)
+DB_HOST=db
+DB_PORT=3306
+
+# Spring App
+SPRING_PROFILES_ACTIVE=dev
+SERVER_PORT=8088
+
+
+# Cognito / Frontend
+ISSUER_URI=https://cognito-idp.us-east-1.amazonaws.com/us-east-1_DT4Gid44g
+CLIENT_ID=4e4vnk6801iebpftjpu5kudp1d
+FRONTEND_ORIGIN=http://localhost:5173

@@ -1,0 +1,59 @@
+server:
+  port: ${PORT:8088}
+
+spring:
+  datasource:
+    url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_NAME:ai-grow}?useSSL=false&allowPublicKeyRetrieval=true
+    username: ${DB_USER:root}
+    password: ${DB_PASS:root}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  flyway:
+      enabled: false
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    database-platform: org.hibernate.dialect.MySQLDialect
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${ISSUER_URI}
+  
+  jackson:
+    mapper:
+      accept-case-insensitive-enums: true
+      
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 5MB
+
+cognito:
+  issuer-uri: ${ISSUER_URI}
+  client-id: ${CLIENT_ID}
+  userinfo-url: ${COGNITO_USERINFO_URL}
+
+
+app:
+  cors:
+    allowed-origins: ${FRONTEND_ORIGIN:http://localhost:3000}
+
+  upload:
+    base-url: ${PUBLIC_FILES_BASE_URL:http://localhost:8088/uploads}
+    max-file-size: ${MAX_UPLOAD_SIZE:5MB}
+
+file:
+  storage:
+    base-dir: ${FILE_STORAGE_BASE:./uploads}
+    buckets:
+      company-logo: company-logos
+      user-avatar: user-avatars
+      temp: temp
+      task-attachment: task-attachments
+
+logging:
+  level:
+    com.springboot.demo.security: DEBUG
+    org.springframework.security.authorization: TRACE
+    org.springframework.security.access: DEBUG
